@@ -12,7 +12,7 @@ screen hud:
     imagebutton:
         xalign 0.5
         idle "tmp weave button"
-        if isNormal:
-            action Jump("alt_start")
+        if is_normal:
+            action Jump("alt_" + current_label)
         else:
-            action Jump("start")
+            action Jump(current_label)

@@ -1,10 +1,21 @@
-﻿
-define isNormal = True
+﻿# main script and where the game starts
 
+# sets `current_label` to the name of the current label unless it is a renpy internal or in the alternate dimensions
+init python:
+    def label_callback(name, abnormal):
+        if name.startswith("_") or name.startswith("alt_"): return
+        store.current_label = name
+
+    config.label_callback = label_callback
+
+# tells which dimensions the player is in
+define is_normal = True
+
+# character definitions
 define a = Character("Amaya")
 
 label start:
-    $ isNormal = True
+    $ is_normal = True
 
     scene bg normal room
 
@@ -19,7 +30,7 @@ label start:
     return
 
 label alt_start:
-    $ isNormal = False
+    $ is_normal = False
 
     scene bg alt room
 
