@@ -4,6 +4,8 @@ define a = Character("Amaya")
 label start:
 
     scene bg room
+
+    show screen hud
     
     "A body has been discovered"
 
@@ -12,3 +14,6 @@ label start:
     a "This is so sad frfr"
 
     return
+
+label test:
+    "test"
