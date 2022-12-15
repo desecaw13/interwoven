@@ -1,9 +1,12 @@
 ﻿
+define isNormal = True
+
 define a = Character("Amaya")
 
 label start:
+    $ isNormal = True
 
-    scene bg room
+    scene bg normal room
 
     show screen hud
     
@@ -12,6 +15,21 @@ label start:
     show amaya suprised
 
     a "This is so sad frfr"
+
+    return
+
+label alt_start:
+    $ isNormal = False
+
+    scene bg alt room
+
+    show screen hud
+
+    "A body was discovered"
+
+    show alt amaya suprised
+
+    a "I am not actually Amaya"
 
     return
 
