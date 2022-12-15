@@ -1,0 +1,21 @@
+# Ren'Py log files
+log.txt
+errors.txt
+traceback.txt
+lint.txt
+files.txt
+
+# Created directories
+saves/
+tmp/
+cache/
+
+# Compiled sources
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.rpyc
+*.rpymc
