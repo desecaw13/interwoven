@@ -1,24 +1,29 @@
-﻿# The script of the game goes in this file.
+﻿# main script and where the game starts
 
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
+# sets `current_label` to the name of the current label unless it is a renpy internal or in the alternate dimensions
+init python:
+    def label_callback(name, abnormal):
+        if name.startswith("_") or name.startswith("alt_"): return
+        store.current_label = name
 
+    config.label_callback = label_callback
+
+# tells which dimensions the player is in
+define is_normal = True
+
+# character definitions
 define a = Character("Amaya")
 
-
-# The game starts here.
-
 label start:
+    $ is_normal = True
 
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
+    scene bg normal room
 
-    scene bg room
+    show screen hud
+    
+    "A body has been discovered"
 
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
+    show amaya suprised
 
     show eileen happy
 
@@ -29,5 +34,24 @@ label start:
     a "Once you add a story, pictures, and music, you can release it to the world!"
 
     # This ends the game.
+    a "This is so sad frfr"
 
     return
+
+label alt_start:
+    $ is_normal = False
+
+    scene bg alt room
+
+    show screen hud
+
+    "A body was discovered"
+
+    show alt amaya suprised
+
+    a "I am not actually Amaya"
+
+    return
+
+label test:
+    "test"
