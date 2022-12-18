@@ -1,4 +1,4 @@
-﻿# main script and where the game starts
+# main script and where the game starts
 
 # sets `current_label` to the name of the current label unless it is a renpy internal or in the alternate dimensions
 init python:
@@ -41,9 +41,21 @@ label investigation:
     $ is_investigation = True
 
     if is_normal:
-        scene bg sitroom
+        $ music_time = renpy.music.get_pos()
+        if music_time == None:
+            play music "audio/invest/invest1.wav" fadein 0.4
+        else:
+            play music "<from " + str(music_time) + ">audio/invest/invest1.wav" fadein 0.4
+            $ renpy.music.queue("audio/invest/invest1.wav", loop=True)
+        scene bg sitroom with Pixellate(1, 5)
     else:
-        scene bg alt sitroom
+        $ music_time = renpy.music.get_pos()
+        if music_time == None:
+            play music "audio/invest/invest2.wav" fadein 0.4
+        else:
+            play music "<from " + str(music_time) + ">audio/invest/invest2.wav" fadein 0.4
+            $ renpy.music.queue("audio/invest/invest1.wav", loop=True)
+        scene bg alt sitroom with Pixellate(1, 5)
 
     show screen hud
 
