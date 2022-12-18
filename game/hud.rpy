@@ -1,18 +1,17 @@
 # heads up display
 
-screen hud:
+screen hud():
     imagebutton:
         xalign 0.0
-        idle "tmp inventory button"
+        idle "inventory button"
         action Show("inventory")
     imagebutton:
         xalign 1.0
-        idle "tmp notebook button"
+        idle "notebook button"
         action Show("notebook")
-    imagebutton:
-        xalign 0.5
-        idle "tmp weave button"
-        if is_normal:
-            action Jump("alt_" + current_label)
-        else:
-            action Jump(current_label)
+    if is_investigation:
+        imagebutton:
+            xalign 0.5
+            idle "weave button"
+            keysym "w"
+            action ToggleVariable("is_normal"), Jump(current_label)

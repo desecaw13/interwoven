@@ -1,6 +1,6 @@
 # screens for menus
 
-screen inventory:
+screen inventory():
     modal True
     frame:
         xalign 0.5 yalign 0.5
@@ -10,10 +10,10 @@ screen inventory:
             label "Inventory"
             use item('Pepper') # todo: make conditional
             imagebutton:
-                idle "tmp close button"
+                idle "close button"
                 action Hide("inventory")
 
-screen notebook:
+screen notebook():
     modal True
     frame:
         xalign 0.5 yalign 0.5
@@ -22,7 +22,7 @@ screen notebook:
         hbox spacing 100:
             label "Notebook"
             imagebutton:
-                idle "tmp close button"
+                idle "close button"
                 action Hide("notebook")
 
 screen item(name):

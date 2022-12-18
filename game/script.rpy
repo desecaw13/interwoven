@@ -8,16 +8,26 @@ init python:
 
     config.label_callback = label_callback
 
-# tells which dimensions the player is in
-define is_normal = True
+
+# bool definitions
+define is_normal = True # tells which dimensions the player is in
+define is_investigation = False
+
+# image definitions
+image bg sitroom = "backgrounds/sittingroom.png"
+image bg alt sitroom = "backgrounds/sittingroomalt.png"
 
 # character definitions
 define a = Character("Amaya")
 
-label start:
-    $ is_normal = True
+# label definitions
+label main_menu:
+    jump start # tmp
 
-    scene bg normal room
+label start:
+    jump investigation # tmp
+
+    scene bg room
 
     show screen hud
     
@@ -25,33 +35,19 @@ label start:
 
     show amaya suprised
 
-    show eileen happy
-
-    # These display lines of dialogue.
-
-    a "You've created a new Ren'Py game."
-
-    a "Once you add a story, pictures, and music, you can release it to the world!"
-
-    # This ends the game.
     a "This is so sad frfr"
 
-    return
+label investigation:
+    $ is_investigation = True
 
-label alt_start:
-    $ is_normal = False
-
-    scene bg alt room
+    if is_normal:
+        scene bg sitroom
+    else:
+        scene bg alt sitroom
 
     show screen hud
 
-    "A body was discovered"
+    call screen test_investigation
 
-    show alt amaya suprised
-
-    a "I am not actually Amaya"
-
+    $ is_investigation = False # move ?
     return
-
-label test:
-    "test"
