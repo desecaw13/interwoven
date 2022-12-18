@@ -8,25 +8,24 @@ screen test_investigation(__is_normal):
             idle "tmp icon"
 
             if evidence_dict["pepper"] in evidence:
-                action Jump("already_done")
+                action Call("already_done", "investigation")
             else:
-                action Jump("test_pepper")
+                action Call("test_pepper")
     else:
         imagebutton:
             xalign 0.75 yalign 0.75
             idle "tmp alt icon"
-            action If(evidence_dict["alt pepper"] in evidence, Jump("already_done"), Jump("test_alt_pepper"))
+            action If(evidence_dict["alt pepper"] in evidence, Call("already_done", "investigation"), Call("test_alt_pepper"))
 
 label test_pepper:
     a "this is some text about peppers"
     $ evidence.add(evidence_dict["pepper"])
-    return
+    jump investigation
 label test_alt_pepper:
     a "why is it purple..."
     $ evidence.add(evidence_dict["alt pepper"])
-    return
-
-label already_done:
-    # chage random, individually, or not at all?
-    a "I looked at this already."
     jump investigation
+
+label already_done(back):
+    a "I looked at this already."
+    jump expression back
