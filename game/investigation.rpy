@@ -15,7 +15,7 @@ screen test_investigation(__is_normal):
         imagebutton:
             xalign 0.75 yalign 0.75
             idle "tmp alt icon"
-            action If(evidence_dict["pepper"] in evidence, Jump("already_done"), Jump("test_alt_pepper"))
+            action If(evidence_dict["alt pepper"] in evidence, Jump("already_done"), Jump("test_alt_pepper"))
 
 label test_pepper:
     a "this is some text about peppers"
@@ -29,4 +29,4 @@ label test_alt_pepper:
 label already_done:
     # chage random, individually, or not at all?
     a "I looked at this already."
-    return
+    jump investigation
