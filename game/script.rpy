@@ -20,6 +20,7 @@ image bg alt sitroom = "backgrounds/sittingroomalt.png"
 # character definitions
 define a = Character("Amaya")
 
+
 # label definitions
 label main_menu:
     jump start # tmp
@@ -30,36 +31,40 @@ label start:
     scene bg room
 
     show screen hud
-    
+
     "A body has been discovered"
 
     show amaya suprised
 
     a "This is so sad frfr"
 
+    return
+
 label investigation:
     $ is_investigation = True
 
+    $ music_time = renpy.music.get_pos()
+
     if is_normal:
-        $ music_time = renpy.music.get_pos()
         if music_time == None:
             play music "audio/invest/invest1.wav" fadein 0.4
         else:
             play music "<from " + str(music_time) + ">audio/invest/invest1.wav" fadein 0.4
-            $ renpy.music.queue("audio/invest/invest1.wav", loop=True)
-        scene bg sitroom with Pixellate(1, 5)
+            queue music "audio/invest/invest1.wav" loop
+
+        scene bg sitroom
     else:
-        $ music_time = renpy.music.get_pos()
         if music_time == None:
             play music "audio/invest/invest2.wav" fadein 0.4
         else:
             play music "<from " + str(music_time) + ">audio/invest/invest2.wav" fadein 0.4
-            $ renpy.music.queue("audio/invest/invest1.wav", loop=True)
-        scene bg alt sitroom with Pixellate(1, 5)
+            queue music "audio/invest/invest2.wav" loop
+
+        scene bg alt sitroom
 
     show screen hud
 
-    call screen test_investigation
+    call screen test_investigation(is_normal) with Pixellate(0.75, 5)
 
     $ is_investigation = False # move ?
     return
