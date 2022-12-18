@@ -10,8 +10,8 @@ init python:
 
 
 # bool definitions
-define is_normal = True # tells which dimensions the player is in
-define is_investigation = False
+default is_normal = True # tells which dimensions the player is in
+default is_investigation = False
 
 # image definitions
 image bg sitroom = "backgrounds/sittingroom.png"
@@ -49,16 +49,14 @@ label investigation:
         if music_time == None:
             play music "audio/invest/invest1.wav" fadein 0.4
         else:
-            play music "<from " + str(music_time) + ">audio/invest/invest1.wav" fadein 0.4
-            queue music "audio/invest/invest1.wav" loop
+            play music "<from " + str(music_time) + " loop 0>audio/invest/invest1.wav" fadein 0.4
 
         scene bg sitroom
     else:
         if music_time == None:
             play music "audio/invest/invest2.wav" fadein 0.4
         else:
-            play music "<from " + str(music_time) + ">audio/invest/invest2.wav" fadein 0.4
-            queue music "audio/invest/invest2.wav" loop
+            play music "<from " + str(music_time) + " loop 0>audio/invest/invest2.wav" fadein 0.4
 
         scene bg alt sitroom
 

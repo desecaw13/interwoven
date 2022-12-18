@@ -8,7 +8,10 @@ screen inventory():
 
         hbox spacing 100:
             label "Inventory"
-            use item('Pepper') # todo: make conditional
+            
+            for x in evidence:
+                use item(x.name, x.pic)
+
             imagebutton:
                 idle "close button"
                 action Hide("inventory")
@@ -25,10 +28,10 @@ screen notebook():
                 idle "close button"
                 action Hide("notebook")
 
-screen item(name):
+screen item(name, pic):
     frame:
         xpadding 20 ypadding 20
 
         vbox spacing 20:
             label name
-            imagebutton idle "tmp icon"
+            imagebutton idle pic
