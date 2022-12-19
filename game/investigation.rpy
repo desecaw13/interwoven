@@ -1,4 +1,4 @@
-# screens for investigation
+# screens for investigations
 
 screen test_investigation(__is_normal):
 
@@ -15,16 +15,22 @@ screen test_investigation(__is_normal):
         imagebutton:
             xalign 0.75 yalign 0.75
             idle "tmp alt icon"
-            action If(evidence_dict["alt pepper"] in evidence, Call("already_done", "investigation"), Call("test_alt_pepper"))
+
+            if evidence_dict["alt pepper"] in evidence:
+                action Call("already_done", "investigation")
+            else:
+                action Call("test_alt_pepper")
 
 label test_pepper:
     a "this is some text about peppers"
     $ evidence.add(evidence_dict["pepper"])
     jump investigation
+
 label test_alt_pepper:
     a "why is it purple..."
     $ evidence.add(evidence_dict["alt pepper"])
     jump investigation
+
 
 label already_done(back):
     a "I looked at this already."
