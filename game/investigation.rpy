@@ -6,7 +6,7 @@ init python:
     def a_say(text="I looked at this already."):
         renpy.show_screen("disabled_hud")
         # IDEA: could show a disabled investigation here
-        renpy.say(a, text)
+        a(text)
         #evidence.add(evidence_dict["alt pepper"])
 
 
