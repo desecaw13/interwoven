@@ -3,8 +3,8 @@
 screen inventory():
     modal True
     frame:
-        xalign 0.5 yalign 0.5
-        xpadding 20 ypadding 20
+        align (0.5, 0.5)
+        padding (20, 20)
 
         hbox spacing 100:
             label "Inventory"
@@ -19,8 +19,8 @@ screen inventory():
 screen notebook():
     modal True
     frame:
-        xalign 0.5 yalign 0.5
-        xpadding 20 ypadding 20
+        align (0.5, 0.5)
+        padding (20, 20)
 
         hbox spacing 100:
             label "Notebook"
@@ -30,7 +30,7 @@ screen notebook():
 
 screen item(name, pic):
     frame:
-        xpadding 20 ypadding 20
+        padding (20, 20)
 
         vbox spacing 20:
             label name

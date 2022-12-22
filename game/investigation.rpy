@@ -4,20 +4,20 @@ screen test_investigation(__is_normal):
 
     if __is_normal:
         imagebutton:
-            xalign 0.25 yalign 0.25
+            align (0.25, 0.25)
             idle "tmp icon"
 
             if evidence_dict["pepper"] in evidence:
-                action Call("already_done", "investigation")
+                action Call("already_done", from_current=True)
             else:
                 action Call("test_pepper")
     else:
         imagebutton:
-            xalign 0.75 yalign 0.75
+            align (0.75, 0.75)
             idle "tmp alt icon"
 
             if evidence_dict["alt pepper"] in evidence:
-                action Call("already_done", "investigation")
+                action Call("already_done", from_current=True)
             else:
                 action Call("test_alt_pepper")
 
@@ -32,6 +32,6 @@ label test_alt_pepper:
     jump investigation
 
 
-label already_done(back):
+label already_done:
     a "I looked at this already."
-    jump expression back
+    return
