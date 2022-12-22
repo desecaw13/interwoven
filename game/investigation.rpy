@@ -1,5 +1,10 @@
 # screens for investigations
 
+init python:
+    def say_this(text):
+        renpy.show_screen("hud")
+        renpy.say(a, text)
+
 screen test_investigation(__is_normal):
 
     if __is_normal:
@@ -8,7 +13,8 @@ screen test_investigation(__is_normal):
             idle "tmp icon"
 
             if evidence_dict["pepper"] in evidence:
-                action Call("already_done", from_current=True)
+                action Function(renpy.invoke_in_new_context, say_this, "I looked at this already.")
+                #action Call("already_done", from_current=True)
             else:
                 action Call("test_pepper")
     else:

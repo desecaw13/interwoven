@@ -1,11 +1,11 @@
 # main script and where the game starts
 
-# sets `current_label` to the name of the current label unless it is a renpy internal
 init python:
+
+    # sets `current_label` to the name of the current label unless it is a renpy internal
     def label_callback(name, abnormal):
         if name.startswith("_"): return
         store.current_label = name
-
     config.label_callback = label_callback
 
 
