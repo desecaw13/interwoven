@@ -1,9 +1,14 @@
 # screens for investigations
 
 init python:
-    def say_this(text):
-        renpy.show_screen("hud")
+
+    # handles Amaya saying things during picking up evidence
+    def a_say(text="I looked at this already."):
+        renpy.show_screen("disabled_hud")
+        # IDEA: could show a disabled investigation here
         renpy.say(a, text)
+        #evidence.add(evidence_dict["alt pepper"])
+
 
 screen test_investigation(__is_normal):
 
@@ -13,31 +18,15 @@ screen test_investigation(__is_normal):
             idle "tmp icon"
 
             if evidence_dict["pepper"] in evidence:
-                action Function(renpy.invoke_in_new_context, say_this, "I looked at this already.")
-                #action Call("already_done", from_current=True)
+                action Function(renpy.invoke_in_new_context, a_say)
             else:
-                action Call("test_pepper")
+                action Function(renpy.invoke_in_new_context, a_say, "Wow, I sure do love peppers."), AddToSet(evidence, evidence_dict["pepper"])
     else:
         imagebutton:
             align (0.75, 0.75)
             idle "tmp alt icon"
 
             if evidence_dict["alt pepper"] in evidence:
-                action Call("already_done", from_current=True)
+                action Function(renpy.invoke_in_new_context, a_say)
             else:
-                action Call("test_alt_pepper")
-
-label test_pepper:
-    a "this is some text about peppers"
-    $ evidence.add(evidence_dict["pepper"])
-    jump investigation
-
-label test_alt_pepper:
-    a "why is it purple..."
-    $ evidence.add(evidence_dict["alt pepper"])
-    jump investigation
-
-
-label already_done:
-    a "I looked at this already."
-    return
+                action Function(renpy.invoke_in_new_context, a_say, "Why is it purple..."), AddToSet(evidence, evidence_dict["alt pepper"])
