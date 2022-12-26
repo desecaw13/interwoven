@@ -19,3 +19,7 @@ cache/
 *.so
 *.rpyc
 *.rpymc
+
+# Libaries
+python-packages/
+renpy-discord-presence/
