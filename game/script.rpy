@@ -26,7 +26,6 @@ label main_menu:
     jump start # tmp
 
 label start:
-    jump investigation # tmp
 
     scene bg room
 
@@ -37,8 +36,6 @@ label start:
     show amaya suprised
 
     a "This is so sad frfr"
-
-    return
 
 label investigation:
     $ is_investigation = True

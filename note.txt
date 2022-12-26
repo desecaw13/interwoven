@@ -1,0 +1,1 @@
+this uses https://github.com/Lezalith/RenPy-Discord-Presence
